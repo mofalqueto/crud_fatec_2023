@@ -9,7 +9,7 @@ $data = array();
 //verifica se a variável "$received_data->action" é igual a 'fetchall', se for verdadeira o que está dentro de {} será executado
 if ($received_data->action == 'fetchall') {
     $query = "
- SELECT * FROM fatec_alunos 
+ SELECT * FROM fatec_professores 
  ORDER BY id DESC
  ";
     $statement = $connect->prepare($query);
@@ -22,14 +22,16 @@ if ($received_data->action == 'fetchall') {
 }
 if ($received_data->action == 'insert') {
     $data = array(
-        ':first_name' => $received_data->firstName,
-        ':last_name' => $received_data->lastName
+        ':name' => $received_data->name,
+        ':end' => $received_data->end,
+        ':curso' => $received_data->curso,
+        ':salario' => $received_data->salario
     );
 
     $query = "
- INSERT INTO fatec_alunos 
- (first_name, last_name) 
- VALUES (:first_name, :last_name)
+ INSERT INTO fatec_professores 
+ (name, end, curso, salario) 
+ VALUES (:name, :end, :curso, :salario)
  ";
 
     $statement = $connect->prepare($query);
@@ -37,14 +39,14 @@ if ($received_data->action == 'insert') {
     $statement->execute($data);
 
     $output = array(
-        'message' => 'Aluno Adicionado'
+        'message' => 'Professor Adicionado'
     );
 
     echo json_encode($output);
 }
 if ($received_data->action == 'fetchSingle') {
     $query = "
- SELECT * FROM fatec_alunos 
+ SELECT * FROM fatec_professores
  WHERE id = '" . $received_data->id . "'
  ";
 
@@ -57,24 +59,30 @@ if ($received_data->action == 'fetchSingle') {
     //é utilizado para percorrer um conjunto de dados usando um loop. a variável "result" é fonte dos dados a serem iterados e a variável "row" é usada como um ponteiro para o elemento atual.
     foreach ($result as $row) {
         $data['id'] = $row['id'];
-        $data['first_name'] = $row['first_name'];
-        $data['last_name'] = $row['last_name'];
+        $data['name'] = $row['name'];
+        $data['end'] = $row['end'];
+        $data['curso'] = $row['curso'];
+        $data['salario'] = $row['salario'];
     }
 
     echo json_encode($data);
 }
 if ($received_data->action == 'update') {
     $data = array(
-        ':first_name' => $received_data->firstName,
-        ':last_name' => $received_data->lastName,
+        ':name' => $received_data->name,
+        ':end' => $received_data->end,
+        ':curso' => $received_data->curso,
+        ':salario' => $received_data->salario,
         ':id' => $received_data->hiddenId
     );
 
     //faz uma instrução para executar essa consulta no banco de dados 
     $query = "
- UPDATE fatec_alunos 
- SET first_name = :first_name, 
- last_name = :last_name 
+ UPDATE fatec_professores 
+ SET name = :name, 
+ end = :end
+ curso = :curso
+ salario = :salario
  WHERE id = :id
  ";
 
@@ -83,7 +91,7 @@ if ($received_data->action == 'update') {
     $statement->execute($data);
 
     $output = array(
-        'message' => 'Aluno Atualizado'
+        'message' => 'Professor Atualizado'
     );
 
     echo json_encode($output);
@@ -91,7 +99,7 @@ if ($received_data->action == 'update') {
 
 if ($received_data->action == 'delete') {
     $query = "
- DELETE FROM fatec_alunos 
+ DELETE FROM fatec_professores 
  WHERE id = '" . $received_data->id . "'
  ";
 
@@ -100,7 +108,7 @@ if ($received_data->action == 'delete') {
     $statement->execute();
 
     $output = array(
-        'message' => 'Aluno Deletado'
+        'message' => 'Professor Deletado'
     );
 
     echo json_encode($output);

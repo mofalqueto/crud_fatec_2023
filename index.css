@@ -64,6 +64,8 @@ h1:after {
 p {
   margin-bottom: 15px;
 }
+
+/*seleciona o primeiro elemento filho de 'p' e configura a margem*/
 p:first-child {
   margin: 0px;
 }
@@ -140,6 +142,8 @@ input[type="submit"]:hover {
   -webkit-border-radius: 0 0 5px 5px;
   border-radius: 0 0 5px 5px;
 }
+
+/*determina o estilo do link da classe "link"*/
 .link a {
   font-weight: bold;
   background: #f7f8f1;
@@ -154,6 +158,8 @@ input[type="submit"]:hover {
   -webkit-transition: all 0.4s linear;
   transition: all 0.4s linear;
 }
+
+/*determina o estilo do link da classe "link" quando o mouse passa por cima*/
 .link a:hover {
   color: #39bfd7;
   background: #f7f7f7;
@@ -173,7 +179,7 @@ input[type="submit"]:hover {
 
   -webkit-box-shadow: 5px;
   border-radius: 5px;
-
+  
   -webkit-animation-duration: 0.5s;
   -webkit-animation-timing-function: ease;
   -webkit-animation-fill-mode: both;

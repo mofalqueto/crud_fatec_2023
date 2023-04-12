@@ -1,5 +1,5 @@
 <?php
-
+//cria paginas com conteudo dinamico com saída personalizada para controlar como os dados do script são exibidos para o usuário final.
 ob_start();
 
 session_start(); // Inicia a sessão
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
-
+//função usada para liberar o contedúdo do buffer de saída e enviar os dados para o navegador imediatamente
 ob_end_flush();
 
 /*
