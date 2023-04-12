@@ -1,3 +1,9 @@
+ENDEREÇO DO BD ATUALIZADO DA AVALIAÇÃO:
+
+https://gameofmonica.000webhostapp.com/sistema/dashboard.html
+
+
+
 # Exemplo CRUD com BD Relacional
 
 Projeto feito em sala de aula para testar o uso de Banco de Dados Relacional.
